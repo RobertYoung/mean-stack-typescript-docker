@@ -1,0 +1,25 @@
+version: '3'
+services:
+  client:
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile
+    ports:
+      - "4200:4200"
+  server:
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client/dist:/usr/src/app/client/dist
+    # volumes:
+    # - .:/code
+    # - logvolume01:/var/log
+    # links:
+    # - redis
+  # server:
+  #   image: redis
+# volumes:
+#   logvolume01: {}

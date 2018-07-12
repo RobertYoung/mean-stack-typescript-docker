@@ -7,6 +7,8 @@
 # Build the docker image
  docker build -t mean-stack-client:dev -f ./client/Dockerfile .
 
+docker run -it --rm mean-stack-client:dev
+
 docker run -it --rm -v $(pwd)/client/dist:/usr/src/app/client/dist mean-stack-client:dev npm run build
 
 # Install the dependencies
