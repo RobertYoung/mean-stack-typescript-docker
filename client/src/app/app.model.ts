@@ -1,5 +1,5 @@
 class AppModel {
-
+  name: string;
 }
 
 export {
