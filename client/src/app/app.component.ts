@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AppModel } from '@client/app/app.model';
+import { User } from '@common/models';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  user = new User();
+  app = new AppModel();
 }

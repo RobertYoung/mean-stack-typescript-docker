@@ -1,20 +1,5 @@
 # Client
 
-```sh
-# Build the docker images
-docker build -t mean-stack-client:dev .
-
-# Install the dependencies
-docker run -it --rm -v $(pwd):/data mean-stack-client:dev yarn
-
-# Start the dev server
-docker run -it --rm -v $(pwd):/data -p 4200:4200 mean-stack-client:dev npm start
-
-# Build for production
-cd ../
-docker run -it --rm -v $(pwd):/data -w /data/client mean-stack-client:dev npm run build
-```
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
