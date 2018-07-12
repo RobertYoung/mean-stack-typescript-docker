@@ -23,6 +23,6 @@
   },
   "include": [
     "src/**/*.ts",
-    "./../server/**/*.ts"
+    "./../server/models/**/*.ts"
   ]
 }
