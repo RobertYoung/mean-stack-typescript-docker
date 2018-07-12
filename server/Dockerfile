@@ -4,8 +4,8 @@ RUN mkdir -p /data
 
 WORKDIR /data
 
-VOLUME ["/data"]
+EXPOSE 3000
 
-EXPOSE 4200
+VOLUME ["/data"]
 
 CMD ["npm", "start"]

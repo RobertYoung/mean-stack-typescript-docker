@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AppModel } from '@app/app.model';
-import { User } from '@common/models';
+import { AppModel } from '@client/app.model';
+import { User } from '@server/models';
 
 @Component({
   selector: 'app-root',

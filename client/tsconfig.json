@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./../.output/public/out-tsc",
+    "outDir": "./../dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -17,14 +17,12 @@
     ],
     "baseUrl": "src",
     "paths": {
-      "@app/*": ["./app/*"],
-      "@common/*": ["./../../common/*"],
+      "@client/*": ["./app/*"],
       "@server/*": ["./../../server/*"]
     }
   },
   "include": [
     "src/**/*.ts",
-    "./../common/**/*.ts",
     "./../server/**/*.ts"
   ]
 }
