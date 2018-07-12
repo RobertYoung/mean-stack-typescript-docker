@@ -15,13 +15,16 @@
       "es2017",
       "dom"
     ],
-    "baseUrl": "./",
+    "baseUrl": "src",
     "paths": {
-      "@client/*": ["./src/*"],
-      "@common/*": ["./../common/*"]
+      "@app/*": ["./app/*"],
+      "@common/*": ["./../../common/*"],
+      "@server/*": ["./../../server/*"]
     }
   },
   "include": [
-    "./../**/*.ts"
+    "src/**/*.ts",
+    "./../common/**/*.ts",
+    "./../server/**/*.ts"
   ]
 }

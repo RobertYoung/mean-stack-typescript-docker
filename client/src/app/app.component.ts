@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppModel } from '@client/app/app.model';
+import { AppModel } from '@app/app.model';
 import { User } from '@common/models';
 
 @Component({
