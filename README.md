@@ -1,5 +1,12 @@
 # Mean Stack with Docker and TypeScript
 
+## Getting Started
+```sh
+docker-compose up
+```
+
+Open http://localhost:4200
+
 ## Features
 ### Docker
 #### Client
@@ -39,6 +46,13 @@ docker run -it --rm -p 3000:3000 -v $(pwd)/client/dist:/usr/src/app/client/dist 
 
 # Build for production
 # docker run -it --rm -v $(pwd):/data -w /data/server mean-stack-server:dev npm run build
+```
+
+#### Database
+```sh
+docker build -t mean-stack-database:dev -f ./database/Dockerfile .
+
+docker run -d -p 27017:27017 mean-stack-database:dev
 ```
 
 ### TypeScript Support

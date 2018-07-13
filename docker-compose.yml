@@ -14,12 +14,9 @@ services:
       - "3000:3000"
     volumes:
       - ./client/dist:/usr/src/app/client/dist
-    # volumes:
-    # - .:/code
-    # - logvolume01:/var/log
-    # links:
-    # - redis
-  # server:
-  #   image: redis
-# volumes:
-#   logvolume01: {}
+  database:
+    build:
+      context: .
+      dockerfile: ./database/Dockerfile
+    ports:
+      - "27017:27017"
