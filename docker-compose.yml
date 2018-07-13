@@ -27,7 +27,5 @@ services:
       - "27017:27017"
   mean-stack-database-seed:
     build:
-      context: .
-      dockerfile: ./database/Dockerfile
-    command:
-      "/bin/sh seed-database.sh"
+      context: ./database
+      dockerfile: ./Dockerfile
