@@ -22,8 +22,12 @@ services:
       - run
       - dev
   mean-stack-database:
+    image: mongo
+    ports:
+      - "27017:27017"
+  mean-stack-database-seed:
     build:
       context: .
       dockerfile: ./database/Dockerfile
-    ports:
-      - "27017:27017"
+    command:
+      "/bin/sh seed-database.sh"

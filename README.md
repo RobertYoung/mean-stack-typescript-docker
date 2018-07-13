@@ -16,12 +16,15 @@ docker network create mean-stack
 
 #### Database
 ```sh
-# Build the docker image
+# Build the docker image for seeding the database
 cd database
-docker build -t mean-stack-database:dev .
+docker build -t mean-stack-database-seed:dev .
 
 # Start the database
-docker run -d --name mean-stack-database --network mean-stack mean-stack-database:dev
+docker run -d --rm -p 27017:27017 --name mean-stack-database --network mean-stack mongo
+
+# Seed the database
+docker run -it --rm --name mean-stack-database-seed --network mean-stack mean-stack-database-seed:dev
 ```
 
 #### Client
@@ -52,13 +55,6 @@ docker run -it --rm -p 3000:3000 -v $(pwd)/server:/usr/src/app/server -v $(pwd)/
 
 # Start the server
 docker run -it --rm -p 3000:3000 -v $(pwd)/server:/usr/src/app/server -v $(pwd)/client/dist:/usr/src/app/client/dist --name mean-stack-server --network mean-stack mean-stack-server:dev
-```
-
-#### Database
-```sh
-docker build -t mean-stack-database:dev -f ./database/Dockerfile .
-
-docker run -d -p 27017:27017 mean-stack-database:dev
 ```
 
 ### TypeScript Support
