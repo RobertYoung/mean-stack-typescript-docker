@@ -7,7 +7,7 @@ services:
     ports:
       - "4200:4200"
     volumes:
-      - ./client/:/usr/src/app/client/
+      - ./:/usr/src/app/
   mean-stack-server:
     build:
       context: .
