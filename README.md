@@ -9,23 +9,34 @@ Open http://localhost:4200
 
 ## Features
 ### Docker
+#### Network
+```sh
+docker network create mean-stack
+```
+
+#### Database
+```sh
+# Build the docker image
+cd database
+docker build -t mean-stack-database:dev .
+
+# Start the database
+docker run -d --name mean-stack-database --network mean-stack mean-stack-database:dev
+```
+
 #### Client
 ```sh
 # Build the docker image
  docker build -t mean-stack-client:dev -f ./client/Dockerfile .
 
-docker run -it --rm mean-stack-client:dev
-
-docker run -it --rm -v $(pwd)/client/dist:/usr/src/app/client/dist mean-stack-client:dev npm run build
-
 # Install the dependencies
-# docker run -it --rm -v $(pwd):/data -w /data/client mean-stack-client:dev yarn
+docker run -it --rm -v $(pwd)/client:/usr/src/app/client mean-stack-client:dev yarn
 
-# Start the dev server
-# docker run -it --rm -v $(pwd):/data -w /data/client -p 4200:4200 mean-stack-client:dev npm start
+# Start the development server
+docker run -it --rm -v $(pwd)/client:/usr/src/app/client -p 4200:4200 --name mean-stack-client --network mean-stack mean-stack-client:dev
 
 # Build for production
-# docker run -it --rm -v $(pwd)/client/dist:/usr/src/app/client/dist mean-stack-client:dev npm run build
+docker run -it --rm -v $(pwd)/client:/usr/src/app/client mean-stack-client:dev npm run build
 ```
 
 #### Server
@@ -33,19 +44,17 @@ docker run -it --rm -v $(pwd)/client/dist:/usr/src/app/client/dist mean-stack-cl
 # Build the docker image
 docker build -t mean-stack-server:dev -f ./server/Dockerfile .
 
-docker run -it --rm -p 3000:3000 -v $(pwd)/client/dist:/usr/src/app/client/dist mean-stack-server:dev
-
 # Install the dependencies
-# docker run -it --rm -v $(pwd):/data -w /data/server mean-stack-server:dev yarn
+docker run -it --rm -v $(pwd)/server:/usr/src/app/server mean-stack-server:dev yarn
 
-# Build
-# docker run -it --rm -v $(pwd):/data -w /data/server mean-stack-server:dev npm build
+# Build the server for development
+docker run -it --rm -v $(pwd)/server:/usr/src/app/server mean-stack-server:dev npm run dev
 
-# Start
-# docker run -it --rm -v $(pwd):/data -w /data/server -p 3000:3000 mean-stack-server:dev npm start
+# Build the server for production
+docker run -it --rm -v $(pwd)/server:/usr/src/app/server mean-stack-server:dev npm run build
 
-# Build for production
-# docker run -it --rm -v $(pwd):/data -w /data/server mean-stack-server:dev npm run build
+# Start the server
+docker run -it --rm -p 3000:3000 -v $(pwd)/client/dist:/usr/src/app/client/dist --name mean-stack-server --network mean-stack mean-stack-server:dev
 ```
 
 #### Database

@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Connect
 const connection = (closure: Function) => {
-  return MongoClient.connect('mongodb://localhost:27017/mean', (err, db) => {
+  return MongoClient.connect('mongodb://mean-stack-database/mean', (err, db) => {
     if (err) {
       return console.log(err);
     }

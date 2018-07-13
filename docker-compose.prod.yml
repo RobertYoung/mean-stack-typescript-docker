@@ -6,8 +6,6 @@ services:
       dockerfile: ./client/Dockerfile
     ports:
       - "4200:4200"
-    volumes:
-      - ./client/:/usr/src/app/client/
   mean-stack-server:
     build:
       context: .
