@@ -24,5 +24,8 @@
   "include": [
     "src/**/*.ts",
     "./../server/models/**/*.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "enableIvy": true
+  }
 }
