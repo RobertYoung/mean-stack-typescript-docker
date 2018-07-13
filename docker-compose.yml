@@ -15,7 +15,12 @@ services:
     ports:
       - "3000:3000"
     volumes:
+      - ./server:/usr/src/app/server
       - ./client/dist:/usr/src/app/client/dist
+    entrypoint:
+      - npm
+      - run
+      - dev
   mean-stack-database:
     build:
       context: .
