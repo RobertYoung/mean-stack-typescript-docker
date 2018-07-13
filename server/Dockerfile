@@ -16,6 +16,6 @@ RUN yarn
 
 COPY . /usr/src/app
 
-RUN ["npm" "run" "build"]
+RUN npm run build
 
 CMD ["npm", "start"]
