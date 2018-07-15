@@ -44,4 +44,8 @@ router.get('/users', (req, res) => {
   });
 });
 
+router.get('/test', (req, res) => {
+  res.json(response);
+});
+
 module.exports = router;

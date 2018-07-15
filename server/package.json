@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec 'ts-node --cache-directory .tscache' ./src/server.ts",
+    "dev": "nodemon --exec 'node -r ts-node/register --inspect-brk=0.0.0.0:9229 src/server.ts'",
     "start": "ts-node ./src/server.ts"
   },
   "author": "",

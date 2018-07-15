@@ -14,6 +14,7 @@ services:
       dockerfile: ./server/Dockerfile
     ports:
       - "3000:3000"
+      - "9229:9229"
     volumes:
       - ./server:/usr/src/app/server
       - ./client/dist:/usr/src/app/client/dist

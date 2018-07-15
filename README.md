@@ -51,7 +51,7 @@ docker build -t mean-stack-server:dev -f ./server/Dockerfile .
 docker run -it --rm -v $(pwd)/server:/usr/src/app/server mean-stack-server:dev yarn
 
 # Build the server for development
-docker run -it --rm -p 3000:3000 -v $(pwd)/server:/usr/src/app/server -v $(pwd)/client/dist:/usr/src/app/client/dist mean-stack-server:dev npm run dev
+docker run -it --rm -p 3000:3000 -p 9229:9229 -v $(pwd)/server:/usr/src/app/server -v $(pwd)/client/dist:/usr/src/app/client/dist mean-stack-server:dev npm run dev
 
 # Start the server
 docker run -it --rm -p 3000:3000 -v $(pwd)/server:/usr/src/app/server -v $(pwd)/client/dist:/usr/src/app/client/dist --name mean-stack-server --network mean-stack mean-stack-server:dev
@@ -61,3 +61,4 @@ docker run -it --rm -p 3000:3000 -v $(pwd)/server:/usr/src/app/server -v $(pwd)/
 - Angular
 - Node/Express
 - Mappings
+- Debugging Support in Visual Studio Code
