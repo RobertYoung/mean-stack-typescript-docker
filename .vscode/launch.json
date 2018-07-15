@@ -1,17 +1,22 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [{
     "type": "node",
-    "request": "attach",
-    "name": "Docker: Attach to Node",
-    "port": 9229,
-    "address": "localhost",
-    "localRoot": "${workspaceFolder}",
-    "remoteRoot": "/usr/src/app",
-    "protocol": "inspector",
-    "sourceMaps": true
+    "request": "launch",
+    "name": "start server",
+    "runtimeArgs": [
+      "-r",
+      "ts-node/register",
+      "-r",
+      "tsconfig-paths/register"
+    ],
+    "env": {
+      "MONGO_DB_HOSTNAME": "localhost",
+      "MONGO_DB_PORT": "27017"
+    },
+    "cwd": "${workspaceFolder}/server",
+    "args": [
+      "${workspaceFolder}/server/src/main.ts"
+    ]
   }]
 }
