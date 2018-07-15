@@ -16,12 +16,11 @@ services:
       - "3000:3000"
       - "9229:9229"
     volumes:
-      - ./server:/usr/src/app/server
-      - ./client/dist:/usr/src/app/client/dist
+      - ./:/usr/src/app/
     entrypoint:
       - npm
       - run
-      - dev
+      - start:dev
   mean-stack-database:
     image: mongo
     ports:

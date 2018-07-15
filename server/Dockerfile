@@ -18,4 +18,4 @@ RUN yarn
 
 COPY server /usr/src/app/server
 
-CMD ["npm", "start"]
+CMD ["npm", "run" "start:prod"]

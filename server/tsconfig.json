@@ -1,19 +1,24 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
+    "declaration": false,
     "noImplicitAny": false,
-    "target": "es6",
-    "outDir": "dist",
-    "sourceMap": true,
-    "baseUrl": ".",
-    "moduleResolution": "node",
     "removeComments": true,
-    "typeRoots": ["node_modules/@types"],
-    "paths": {
-      "*": [
-        "node_modules/@types/*",
-        "./server/types/*"
-      ]
-    }
-  }
+    "noLib": false,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "sourceMap": true,
+    "allowJs": true,
+    "outDir": "./dist"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }

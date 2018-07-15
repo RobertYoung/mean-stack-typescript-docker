@@ -1,6 +1,7 @@
 # Mean Stack with Docker and TypeScript
 
 ## Getting Started
+
 ```sh
 docker-compose up
 ```
@@ -8,13 +9,17 @@ docker-compose up
 Open http://localhost:4200
 
 ## Features
+
 ### Docker
+
 #### Network
+
 ```sh
 docker network create mean-stack
 ```
 
 #### Database
+
 ```sh
 # Build the docker image for seeding the database
 cd database
@@ -28,21 +33,23 @@ docker run -it --rm --name mean-stack-database-seed --network mean-stack mean-st
 ```
 
 #### Client
+
 ```sh
 # Build the docker image
  docker build -t mean-stack-client:dev -f ./client/Dockerfile .
 
 # Install the dependencies
-docker run -it --rm -v $(pwd)/client:/usr/src/app/client mean-stack-client:dev yarn
+docker run -it --rm -v $(pwd)/:/usr/src/app/ mean-stack-client:dev yarn
 
 # Start the development server
-docker run -it --rm -v $(pwd)/client:/usr/src/app/client -p 4200:4200 --name mean-stack-client --network mean-stack mean-stack-client:dev
+docker run -it --rm -v $(pwd)/:/usr/src/app/ -p 4200:4200 --name mean-stack-client --network mean-stack mean-stack-client:dev
 
 # Build for production
-docker run -it --rm -v $(pwd)/client:/usr/src/app/client mean-stack-client:dev npm run build
+docker run -it --rm -v $(pwd)/:/usr/src/app/ mean-stack-client:dev npm run build
 ```
 
 #### Server
+
 ```sh
 # Build the docker image
 docker build -t mean-stack-server:dev -f ./server/Dockerfile .
@@ -51,13 +58,14 @@ docker build -t mean-stack-server:dev -f ./server/Dockerfile .
 docker run -it --rm -v $(pwd)/server:/usr/src/app/server mean-stack-server:dev yarn
 
 # Build the server for development
-docker run -it --rm -p 3000:3000 -p 9229:9229 -v $(pwd)/server:/usr/src/app/server -v $(pwd)/client/dist:/usr/src/app/client/dist mean-stack-server:dev npm run dev
+docker run -it --rm -p 3000:3000 -p 9229:9229 -v $(pwd)/:/usr/src/app/ mean-stack-server:dev npm run start:dev
 
 # Start the server
-docker run -it --rm -p 3000:3000 -v $(pwd)/server:/usr/src/app/server -v $(pwd)/client/dist:/usr/src/app/client/dist --name mean-stack-server --network mean-stack mean-stack-server:dev
+docker run -it --rm -p 3000:3000 -v $(pwd)/:/usr/src/app/ --name mean-stack-server --network mean-stack mean-stack-server:dev
 ```
 
 ### TypeScript Support
+
 - Angular
 - Node/Express
 - Mappings
