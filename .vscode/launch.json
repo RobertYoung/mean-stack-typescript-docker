@@ -11,8 +11,7 @@
       "tsconfig-paths/register"
     ],
     "env": {
-      "MONGO_DB_HOSTNAME": "localhost",
-      "MONGO_DB_PORT": "27017"
+      "NODE_ENV": "development"
     },
     "cwd": "${workspaceFolder}/server",
     "args": [

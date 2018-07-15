@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 
+const packageJson = require('@server/../package.json');
+
 @Injectable()
 export class AppService {
   root(): string {
-    return 'Hello World!';
+    return `${packageJson.name} ${packageJson.version}`;
   }
 }
