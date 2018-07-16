@@ -1,4 +1,4 @@
-# Client
+# Mean Stack Client
 
 ## Development server
 

@@ -1,14 +1,37 @@
-# Mean Stack with Docker and TypeScript
+# Mean Stack Boilerplate
+
+## Features
+
+- **M**ongoDB
+- **E**xpress - Nest.js
+- **A**ngular 6.x
+- **N**ode 8.x
+- Docker with Docker Compose
+- Nodemon
+- Yarn
+- TypeScript Path Mappings
+- TSLint
+- Prettier
+- Debugging Support in Visual Studio Code
 
 ## Getting Started
+
+The quickest way to get going is to run:
 
 ```sh
 docker-compose up
 ```
 
+This will start
+
+- Angular Dev Server on port [4200](http://localhost:4200)
+- Nest.js server on port [3000](http://localhost:3000)
+- MongoDb on port [27017](http://localhost:27017)
+- Seed data in MongoDb
+
 Open http://localhost:4200
 
-## Features
+## Help
 
 ### Docker
 
@@ -64,9 +87,11 @@ docker run -it --rm -p 3000:3000 -p 9229:9229 -v $(pwd)/:/usr/src/app/ --name me
 docker run -it --rm -p 3000:3000 -v $(pwd)/:/usr/src/app/ --name mean-stack-server --network mean-stack mean-stack-server:dev
 ```
 
-### TypeScript Support
+### VSCode
 
-- Angular
-- Node/Express
-- Mappings
-- Debugging Support in Visual Studio Code
+If you are running the server outside of docker-compose, you will need to add an entry to your hosts file so it knows where to connect to the MongoDb instance
+
+```sh
+# Add '127.0.0.1 mean-stack-database' to your hosts file
+sudo nano /etc/hosts
+```

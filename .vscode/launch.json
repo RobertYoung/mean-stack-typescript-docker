@@ -1,22 +1,36 @@
 {
   "version": "0.2.0",
   "configurations": [{
-    "type": "node",
-    "request": "launch",
-    "name": "start server",
-    "protocol": "auto",
-    "runtimeArgs": [
-      "-r",
-      "ts-node/register",
-      "-r",
-      "tsconfig-paths/register"
-    ],
-    "env": {
-      "NODE_ENV": "development"
+      "type": "node",
+      "request": "launch",
+      "name": "start server:prod",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "start:prod"
+      ],
+      "cwd": "${workspaceFolder}/server",
+      "port": 9229,
+      "sourceMaps": true
     },
-    "cwd": "${workspaceFolder}/server",
-    "args": [
-      "${workspaceFolder}/server/src/main.ts"
-    ]
-  }]
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "start server:dev",
+      "protocol": "auto",
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "cwd": "${workspaceFolder}/server",
+      "args": [
+        "${workspaceFolder}/server/src/main.ts"
+      ]
+    }
+  ]
 }

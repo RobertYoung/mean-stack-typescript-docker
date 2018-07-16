@@ -4,6 +4,9 @@
   "description": "description",
   "author": "",
   "license": "MIT",
+  "_moduleAliases": {
+    "@server": "dist"
+  },
   "scripts": {
     "format": "prettier --write \"**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
@@ -22,6 +25,7 @@
     "@nestjs/mongoose": "^5.0.0",
     "dotenv": "^6.0.0",
     "fastify-formbody": "^2.0.0",
+    "module-alias": "^2.1.0",
     "mongoose": "^5.2.3",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.0.0",
