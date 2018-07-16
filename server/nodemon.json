@@ -6,5 +6,5 @@
   "ignore": [
     "src/**/*.spec.ts"
   ],
-  "exec": "ts-node -r tsconfig-paths/register src/main.ts"
+  "exec": "node -r ts-node/register -r tsconfig-paths/register --inspect=0.0.0.0:9229 src/main.ts"
 }

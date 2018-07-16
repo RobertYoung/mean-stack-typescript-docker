@@ -4,6 +4,7 @@
     "type": "node",
     "request": "launch",
     "name": "start server",
+    "protocol": "auto",
     "runtimeArgs": [
       "-r",
       "ts-node/register",

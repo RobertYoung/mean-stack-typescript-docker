@@ -61,6 +61,12 @@
     "@types/connect" "*"
     "@types/node" "*"
 
+"@types/bson@*":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@types/bson/-/bson-1.0.10.tgz#f852297b929f92c9c35f39947c93915729efe1ee"
+  dependencies:
+    "@types/node" "*"
+
 "@types/connect@*":
   version "3.4.32"
   resolved "https://registry.yarnpkg.com/@types/connect/-/connect-3.4.32.tgz#aa0e9616b9435ccad02bc52b5b454ffc2c70ba28"
@@ -98,6 +104,22 @@
 "@types/mime@*":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
+
+"@types/mongodb@*":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.1.1.tgz#7afad7627f55b4444d8e4310b9eac6895022cccb"
+  dependencies:
+    "@types/bson" "*"
+    "@types/events" "*"
+    "@types/node" "*"
+
+"@types/mongoose@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.2.0.tgz#70c70e46bebd59e2c84d5ff2df030ebecedde922"
+  dependencies:
+    "@types/events" "*"
+    "@types/mongodb" "*"
+    "@types/node" "*"
 
 "@types/node@*":
   version "10.5.2"
