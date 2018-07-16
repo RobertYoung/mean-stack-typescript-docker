@@ -1,5 +1,4 @@
 {
-  "extends": "../tsconfig.json",
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./../dist/out-tsc",
@@ -15,7 +14,12 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "baseUrl": "src",
+    "paths": {
+      "@client/*": ["app/*"],
+      "@server/*": ["../../server/src/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableIvy": true
