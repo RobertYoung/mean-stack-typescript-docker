@@ -11,13 +11,16 @@
       ],
       "cwd": "${workspaceFolder}/server",
       "port": 9229,
-      "sourceMaps": true
+      "sourceMaps": true,
+      "smartStep": true,
     },
     {
       "type": "node",
       "request": "launch",
       "name": "start server:dev",
       "protocol": "auto",
+      "sourceMaps": true,
+      "smartStep": true,
       "runtimeArgs": [
         "-r",
         "ts-node/register",
