@@ -6,7 +6,8 @@
 - **E**xpress - Nest.js
 - **A**ngular 6.x
 - **N**ode 8.x
-- Docker with Docker Compose
+- Docker
+- NGXS
 - Nodemon
 - Yarn
 - TypeScript Path Mappings

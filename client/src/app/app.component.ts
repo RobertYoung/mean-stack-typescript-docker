@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { AppModel } from '@client/app.model';
 import { User } from '@server/users/interfaces/user.interface';
+import { Select, Store } from '@ngxs/store';
+import { AppState } from '@client/app.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,7 @@ import { User } from '@server/users/interfaces/user.interface';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  user = new User();
-  app = new AppModel();
+  @Select(AppState.users) users$: Observable<Array<User>>;
+
+  constructor(private store: Store) {}
 }
