@@ -3,6 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { User } from '@server/users/interfaces/user.interface';
 import { UserState } from '@client/user/user.state';
+import { GetUsers } from '@client/user/user.actions';
 
 @Component({
   selector: 'app-user-list',
@@ -14,5 +15,7 @@ export class UserListComponent implements OnInit {
 
   constructor(private store: Store) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(new GetUsers());
+  }
 }
