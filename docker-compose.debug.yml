@@ -1,15 +1,21 @@
-version: '2.1'
+version: '3'
 
 services:
-  mean-stack
+  mean-stack:
     image: mean-stack
     build: .
-    env_file:
-      - .env
-    # environment:
-    #   NODE_ENV: development
+    working_dir: /usr/src/app/server
     ports:
       - 3000:3000
       - 9229:9229
+    volumes:
+       - ./server/dist:/usr/src/app/server/dist
     command: npm run start:dev
-    # command: node --inspect=0.0.0.0:9229 server.js
+  mean-stack-database:
+    image: mongo
+    ports:
+      - "27017:27017"
+  mean-stack-database-seed:
+    build:
+      context: ./database
+      dockerfile: ./Dockerfile

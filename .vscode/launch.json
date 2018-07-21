@@ -7,33 +7,41 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": [
         "run",
-        "start:prod"
+        "start"
       ],
       "cwd": "${workspaceFolder}/server",
       "port": 9229,
       "sourceMaps": true,
-      "smartStep": true,
+      "smartStep": true
     },
     {
       "type": "node",
       "request": "launch",
       "name": "start server:dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "start:dev"
+      ],
+      "cwd": "${workspaceFolder}/server",
+      "port": 9229,
+      "sourceMaps": true,
+      "smartStep": true
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "debug server:docker",
+      "port": 9229,
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}/server/dist",
+      "remoteRoot": "/usr/src/app/server/dist",
+      "outFiles": [
+        "${workspaceFolder}/server/dist/**/*.js"
+      ],
       "protocol": "inspector",
       "sourceMaps": true,
-      "smartStep": true,
-      "runtimeArgs": [
-        "-r",
-        "ts-node/register",
-        "-r",
-        "tsconfig-paths/register"
-      ],
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "cwd": "${workspaceFolder}/server",
-      "args": [
-        "${workspaceFolder}/server/src/main.ts"
-      ]
+      "smartStep": true
     }
   ]
 }

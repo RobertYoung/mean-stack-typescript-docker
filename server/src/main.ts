@@ -8,7 +8,9 @@ import { RedirectClientException } from '@server/config/exceptions/redirect-clie
 import { DIST_CLIENT } from '@server/app.constants';
 
 async function bootstrap() {
-  const server = await NestFactory.create(AppModule);
+  const server = await NestFactory.create(AppModule, {
+    // logger: console
+  });
 
   server.engine('html', renderFile);
   server.setBaseViewsDir(DIST_CLIENT);

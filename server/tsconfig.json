@@ -9,7 +9,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es6",
-    "sourceMap": true,
+    "inlineSourceMap": true,
     "allowJs": true,
     "outDir": "./dist",
     "baseUrl": ".",

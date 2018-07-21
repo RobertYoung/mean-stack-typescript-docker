@@ -3,7 +3,7 @@
 ## Features
 
 - **M**ongoDB
-- **E**xpress - Nest.js
+- **E**xpress (Nest.js) 5.x
 - **A**ngular 6.x
 - **N**ode 8.x
 - Docker
@@ -25,67 +25,44 @@ docker-compose up
 
 This will start
 
-- Angular Dev Server on port [4200](http://localhost:4200)
 - Nest.js server on port [3000](http://localhost:3000)
 - MongoDb on port [27017](http://localhost:27017)
 - Seed data in MongoDb
 
-Open http://localhost:4200
+Open http://localhost:3000
 
 ## Help
 
 ### Docker
 
-#### Network
+### Compose
 
 ```sh
-docker network create mean-stack
-```
+### Prod ###
+# Start all services
+docker-compose -f docker-compose.yml up --build
 
-#### Database
+# Start web server only
+docker-compose -f docker-compose.yml up --build mean-stack
 
-```sh
-# Build the docker image for seeding the database
-cd database
-docker build -t mean-stack-database-seed .
-
-# Start the database
-docker run -d --rm -p 27017:27017 --name mean-stack-database --network mean-stack mongo
+# Start database only
+docker-compose -f docker-compose.yml up --build -d mean-stack-database
 
 # Seed the database
-docker run -it --rm --name mean-stack-database-seed --network mean-stack mean-stack-database-seed
-```
+docker-compose -f docker-compose.yml up --build mean-stack-database-seed
 
-#### Client
+### Dev ###
+# Start all services
+docker-compose -f docker-compose.debug.yml up --build
 
-```sh
-# Build the docker image
- docker build -t mean-stack-client -f ./client/Dockerfile .
+# Start web server only
+docker-compose -f docker-compose.debug.yml up --build mean-stack
 
-# Install the dependencies
-docker run -it --rm -v $(pwd)/:/usr/src/app/ mean-stack-client yarn
+# Start database only
+docker-compose -f docker-compose.debug.yml up -d --build mean-stack-database
 
-# Start the development server
-docker run -it --rm -v $(pwd)/:/usr/src/app/ -p 4200:4200 --name mean-stack-client --network mean-stack mean-stack-client
-
-# Build for production
-docker run -it --rm -v $(pwd)/:/usr/src/app/ mean-stack-client npm run build
-```
-
-#### Server
-
-```sh
-# Build the docker image
-docker build -t mean-stack-server -f ./server/Dockerfile .
-
-# Install the dependencies
-docker run -it --rm -v $(pwd)/server:/usr/src/app/server mean-stack-server yarn
-
-# Build the server for development
-docker run -it --rm -p 3000:3000 -p 9229:9229 -v $(pwd)/:/usr/src/app/ --name mean-stack-server --network mean-stack mean-stack-server npm run start
-
-# Start the server
-docker run -it --rm -p 3000:3000 -v $(pwd)/:/usr/src/app/ --name mean-stack-server --network mean-stack mean-stack-server
+# Seed the database
+docker-compose -f docker-compose.debug.yml up --build mean-stack-database-seed
 ```
 
 ### VSCode
