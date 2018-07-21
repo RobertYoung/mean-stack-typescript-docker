@@ -1,7 +1,10 @@
 <h1>Users</h1>
-<ul>
-  <li *ngFor="let user of users$ | async; let i = index">
-    <a [routerLink]="['/user', user._id]">{{user.firstName}} {{user.lastName}}</a>
-    <button (click)="removeTodo(i)">🗑</button>
-  </li>
-</ul>
+<div *ngIf="users$ | async;let users">
+  <ul>
+    <li *ngFor="let user of users; let i = index">
+      <a [routerLink]="['/user', user._id]">{{user.firstName}} {{user.lastName}}</a>
+      <button (click)="removeUser(user)">🗑</button>
+    </li>
+  </ul>
+  <div *ngIf="users.length == 0">No users have been added</div>
+</div>

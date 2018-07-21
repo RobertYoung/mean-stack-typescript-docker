@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { UserState } from '@client/user/user.state';
-import { GetUsers } from '@client/user/user.actions';
+import { GetUsers, RemoveUser } from '@client/user/user.actions';
 import { User } from '@shared/models/user';
 
 @Component({
@@ -15,7 +15,9 @@ export class UserListComponent implements OnInit {
 
   constructor(private store: Store) {}
 
-  ngOnInit() {
-    this.store.dispatch(new GetUsers());
+  ngOnInit() {}
+
+  removeUser(user: User) {
+    this.store.dispatch(new RemoveUser(user));
   }
 }

@@ -31,9 +31,7 @@ export class UserState {
 
   @Action(GetUsers)
   getUsers(ctx: StateContext<UserStateModel>, action: GetUsers) {
-    // ngxs will subscribe to the post observable for you if you return it from the action
     return this.userService.getUsers().pipe(
-      // we use a tap here, since mutating the state is a side effect
       tap(users => {
         const state = ctx.getState();
 
@@ -41,9 +39,11 @@ export class UserState {
           ...state,
           users: users
         });
+      }),
+      catchError((error, caught) => {
+        window.alert('could not get users');
+        return caught;
       })
-      // if the post goes sideways we need to handle it
-      // catchError(error => window.alert('could not add todo'))
     );
   }
 
@@ -56,11 +56,17 @@ export class UserState {
   }
 
   @Action(RemoveUser)
-  removeUser({ getState, setState }: StateContext<UserStateModel>, { payload }: RemoveUser) {
-    setState({
-      ...getState(),
-      users: getState().users.filter((user, i) => user !== payload)
-    });
+  removeUser(ctx: StateContext<UserStateModel>, { payload }: RemoveUser) {
+    return this.userService.deleteUser(payload._id).pipe(
+      tap(user => {
+        const state = ctx.getState();
+
+        ctx.setState({
+          ...state,
+          users: ctx.getState().users.filter((x, i) => x._id !== payload._id)
+        });
+      })
+    );
   }
 
   @Action(ViewUser)
