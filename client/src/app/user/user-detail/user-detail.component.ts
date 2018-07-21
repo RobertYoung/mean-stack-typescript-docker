@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { UserState } from '@client/user/user.state';
+import { Observable } from 'rxjs';
+import { User } from '@shared/models/user';
+import { ActivatedRoute } from '@angular/router';
+import { ViewUser } from '@client/user/user.actions';
 
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css']
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent implements OnInit, OnDestroy {
+  @Select(UserState.user) user$: Observable<User>;
 
-  constructor() { }
+  private sub: any;
+
+  constructor(private route: ActivatedRoute, private store: Store) {}
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.store.dispatch(new ViewUser(params['id']));
+    });
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 }

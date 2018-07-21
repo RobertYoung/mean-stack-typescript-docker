@@ -15,3 +15,9 @@ export class RemoveUser {
 
   constructor(public readonly payload: User) {}
 }
+
+export class ViewUser {
+  static type = '[User] ViewUser';
+
+  constructor(public readonly payload: string) {}
+}

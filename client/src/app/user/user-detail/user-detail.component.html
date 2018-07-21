@@ -1,3 +1,11 @@
-<p>
-  user-detail works!
-</p>
+<div *ngIf="user$ | async as user">
+  <h1>{{user.firstName}} {{user.lastName}}</h1>
+  <dl>
+    <dt>Email:</dt>
+    <dd>{{user.email}}</dd>
+    <dt>Age:</dt>
+    <dd>{{user.age}}</dd>
+    <dt>Admin:</dt>
+    <dd>{{user.admin}}</dd>
+  </dl>
+</div>

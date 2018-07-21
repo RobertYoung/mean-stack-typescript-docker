@@ -1,17 +1,19 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { AddUser, RemoveUser, GetUsers } from '@client/user/user.actions';
+import { AddUser, RemoveUser, GetUsers, ViewUser } from '@client/user/user.actions';
 import { UserService } from '@client/user/user.service';
 import { tap, catchError } from 'rxjs/operators';
 import { User } from '@shared/models/user';
 
 export class UserStateModel {
   users: User[];
+  user: User;
 }
 
 @State<UserStateModel>({
   name: 'user',
   defaults: {
-    users: []
+    users: [],
+    user: null
   }
 })
 export class UserState {
@@ -20,6 +22,11 @@ export class UserState {
   @Selector()
   static users(state: UserStateModel) {
     return state.users;
+  }
+
+  @Selector()
+  static user(state: UserStateModel) {
+    return state.user;
   }
 
   @Action(GetUsers)
@@ -41,12 +48,28 @@ export class UserState {
   }
 
   @Action(AddUser)
-  addUser({ getState, setState }: StateContext<User[]>, { payload }: AddUser) {
-    setState([...getState(), payload]);
+  addUser({ getState, setState }: StateContext<UserStateModel>, { payload }: AddUser) {
+    setState({
+      ...getState(),
+      users: [...getState().users, payload]
+    });
   }
 
   @Action(RemoveUser)
-  removeUser({ getState, setState }: StateContext<User[]>, { payload }: RemoveUser) {
-    setState(getState().filter((user, i) => user !== payload));
+  removeUser({ getState, setState }: StateContext<UserStateModel>, { payload }: RemoveUser) {
+    setState({
+      ...getState(),
+      users: getState().users.filter((user, i) => user !== payload)
+    });
+  }
+
+  @Action(ViewUser)
+  viewUser({ getState, setState }: StateContext<UserStateModel>, { payload }: ViewUser) {
+    const user: User = getState().users.find((x, i) => x._id === payload);
+
+    setState({
+      ...getState(),
+      user: user
+    });
   }
 }
