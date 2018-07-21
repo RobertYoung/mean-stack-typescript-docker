@@ -1,5 +1,7 @@
 [{
-    "_id": "5b4f17858df7b9256b7cd5a9",
+    "_id": {
+      "$oid": "5b4f17858df7b9256b7cd5a9"
+    },
     "firstName": "Joe",
     "lastName": "Smith",
     "email": "jsmith@gmail.com",
@@ -7,7 +9,9 @@
     "admin": false
   },
   {
-    "_id": "5b4f17858df7b9256b7cd5ab",
+    "_id": {
+      "$oid": "5b4f17858df7b9256b7cd5ab"
+    },
     "firstName": "Jen",
     "lastName": "Ford",
     "email": "jford@gmail.com",

@@ -4545,6 +4545,12 @@ neo-async@^2.5.0:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.1.tgz#acb909e327b1e87ec9ef15f41b8a269512ad41ee"
 
+nest-router@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/nest-router/-/nest-router-1.0.6.tgz#b912086549627bd691d6aa42e6d8e5f3d52d8227"
+  dependencies:
+    lodash "^4.17.4"
+
 next-tick@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"

@@ -7,9 +7,9 @@
   "scripts": {
     "format": "prettier --write \"**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
-    "start:dev": "nodemon",
+    "start:dev": "node -r ts-node/register -r tsconfig-paths/register --inspect=0.0.0.0:9229 src/main.ts",
     "prestart:prod": "rm -rf dist && tsc",
-    "start:prod": "node dist/main.js",
+    "start:prod": "node dist/server/src/main.js",
     "start:hmr": "node dist/server",
     "test": "jest",
     "test:cov": "jest --coverage",
@@ -24,6 +24,7 @@
     "fastify-formbody": "^2.0.0",
     "module-alias": "^2.1.0",
     "mongoose": "^5.2.3",
+    "nest-router": "^1.0.6",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.0.0",
     "typescript": "^2.6.2"

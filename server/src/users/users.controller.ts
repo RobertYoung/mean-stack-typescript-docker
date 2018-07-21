@@ -1,8 +1,9 @@
 import { Controller, Get, Body, Post, Param, Put, Delete } from '@nestjs/common';
 import { UsersService } from '@server/users/users.service';
-import { UserDocument, User } from '@server/users/interfaces/user.interface';
+import { UserDocument } from '@server/users/dto/user.dto';
+import { User } from '@shared/models/user';
 
-@Controller('user')
+@Controller()
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -13,7 +14,9 @@ export class UsersController {
 
   @Get('/:id')
   public async getUser(@Param('id') id) {
-    return this.usersService.getUser(id);
+    const x = await this.usersService.getUser(id);
+    console.log(x);
+    return x;
   }
 
   @Post()

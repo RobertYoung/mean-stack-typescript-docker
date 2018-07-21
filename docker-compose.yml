@@ -1,26 +1,15 @@
 version: '3'
+
 services:
-  mean-stack-client:
-    build:
-      context: .
-      dockerfile: ./client/Dockerfile
+  mean-stack:
+    image: mean-stack
+    build: .
+    working_dir: /usr/src/app/server
+    environment:
+      NODE_ENV: production
     ports:
-      - "4200:4200"
-    volumes:
-      - ./:/usr/src/app/
-  mean-stack-server:
-    build:
-      context: .
-      dockerfile: ./server/Dockerfile
-    ports:
-      - "3000:3000"
-      - "9229:9229"
-    volumes:
-      - ./:/usr/src/app/
-    entrypoint:
-      - npm
-      - run
-      - start:dev
+      - 3000:3000
+    command: npm run start:prod
   mean-stack-database:
     image: mongo
     ports:

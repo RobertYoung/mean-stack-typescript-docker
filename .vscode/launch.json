@@ -18,7 +18,7 @@
       "type": "node",
       "request": "launch",
       "name": "start server:dev",
-      "protocol": "auto",
+      "protocol": "inspector",
       "sourceMaps": true,
       "smartStep": true,
       "runtimeArgs": [

@@ -1,7 +1,8 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { UserDocument, User } from '@server/users/interfaces/user.interface';
+import { UserDocument } from '@server/users/dto/user.dto';
+import { User } from '@shared/models/user';
 
 @Injectable()
 export class UsersService {
@@ -17,7 +18,7 @@ export class UsersService {
   }
 
   public async getUser(id: string) {
-    return this.userModel.findById(id);
+    return this.userModel.findById(id).exec();
   }
 
   public async updateUser(id: string, user: User) {

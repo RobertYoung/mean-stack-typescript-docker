@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { User } from '@server/users/interfaces/user.interface';
 import { UserState } from '@client/user/user.state';
 import { GetUsers } from '@client/user/user.actions';
+import { User } from '@shared/models/user';
 
 @Component({
   selector: 'app-user-list',

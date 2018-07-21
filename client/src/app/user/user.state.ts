@@ -1,8 +1,8 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { User } from '@server/users/interfaces/user.interface';
 import { AddUser, RemoveUser, GetUsers } from '@client/user/user.actions';
 import { UserService } from '@client/user/user.service';
 import { tap, catchError } from 'rxjs/operators';
+import { User } from '@shared/models/user';
 
 export class UserStateModel {
   users: User[];

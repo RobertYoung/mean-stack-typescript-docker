@@ -1,4 +1,4 @@
-import { User } from '@server/users/interfaces/user.interface';
+import { User } from '@shared/models/user';
 
 export class GetUsers {
   static type = '[User] GetUsers';
