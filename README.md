@@ -8,7 +8,6 @@
 - **N**ode 8.x
 - Docker
 - NGXS
-- Nodemon
 - Yarn
 - TypeScript Path Mappings
 - TSLint
