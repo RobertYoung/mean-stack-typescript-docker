@@ -1,7 +1,18 @@
 version: '3'
 
 services:
-  mean-stack:
+  mean-stack-client:
+    image: mean-stack
+    build: .
+    working_dir: /usr/src/app/client
+    ports:
+      - 4200:4200
+      - 49153:49153
+    volumes:
+       - ./client:/usr/src/app/client
+       - ./shared:/usr/src/app/shared
+    command: npm run start
+  mean-stack-server:
     image: mean-stack
     build: .
     working_dir: /usr/src/app/server
@@ -9,8 +20,9 @@ services:
       - 3000:3000
       - 9229:9229
     volumes:
-       - ./server/dist:/usr/src/app/server/dist
-    command: npm run start:dev
+       - ./server:/usr/src/app/server
+       - ./shared:/usr/src/app/shared
+    command: sh -c "mkdir -p dist/server/src && touch ./dist/server/src/main.js && npm run start:dev"
   mean-stack-database:
     image: mongo
     ports:

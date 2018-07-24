@@ -1,10 +1,8 @@
 {
   "watch": [
-    "src"
+    "dist"
   ],
-  "ext": "ts",
-  "ignore": [
-    "src/**/*.spec.ts"
-  ],
-  "exec": "node -r ts-node/register -r tsconfig-paths/register --inspect=0.0.0.0:9229 src/main.ts"
+  "ext": "js",
+  "ignore": [],
+  "exec": "node --inspect=0.0.0.0:9229 dist/server/src/main.js"
 }

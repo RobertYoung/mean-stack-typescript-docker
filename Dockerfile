@@ -27,4 +27,6 @@ WORKDIR /usr/src/app
 COPY --from=mean-stack-server /usr/src /usr/src
 COPY --from=mean-stack-client /usr/src/app/client/dist /usr/src/app/client/dist
 EXPOSE 3000
+EXPOSE 4200
+EXPOSE 49153
 CMD ["npm", "start"]
