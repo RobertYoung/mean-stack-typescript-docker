@@ -1,0 +1,26 @@
+<h1>{{user._id ? 'Edit' : 'Add'}} User</h1>
+<form (ngSubmit)="onSubmit()" #userForm="ngForm">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Joe" [(ngModel)]="user.firstName" required>
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Bloggs" [(ngModel)]="user.lastName" required>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="j@bloggs.com"
+      [(ngModel)]="user.email" required>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input type="number" class="form-control" id="age" name="age" placeholder="32" [(ngModel)]="user.age" required>
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="admin" name="admin" [(ngModel)]="user.admin">
+    <label class="form-check-label" for="admin">Admin</label>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid">Submit</button>
+</form>

@@ -1,5 +1,5 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { AddUser, RemoveUser, GetUsers, ViewUser } from '@client/user/user.actions';
+import { AddUser, RemoveUser, GetUsers, ViewUser, EditUser } from '@client/user/user.actions';
 import { UserService } from '@client/user/user.service';
 import { tap, catchError } from 'rxjs/operators';
 import { User } from '@shared/models/user';
@@ -30,15 +30,10 @@ export class UserState {
   }
 
   @Action(GetUsers)
-  getUsers(ctx: StateContext<UserStateModel>, action: GetUsers) {
+  getUsers({ patchState }: StateContext<UserStateModel>, action: GetUsers) {
     return this.userService.getUsers().pipe(
       tap(users => {
-        const state = ctx.getState();
-
-        ctx.setState({
-          ...state,
-          users: users
-        });
+        patchState({ users });
       }),
       catchError((error, caught) => {
         window.alert('could not get users');
@@ -48,34 +43,64 @@ export class UserState {
   }
 
   @Action(AddUser)
-  addUser({ getState, setState }: StateContext<UserStateModel>, { payload }: AddUser) {
-    setState({
-      ...getState(),
-      users: [...getState().users, payload]
-    });
+  addUser({ getState, patchState }: StateContext<UserStateModel>, { payload }: AddUser) {
+    return this.userService.addUser(payload).pipe(
+      tap(user => {
+        patchState({
+          users: [...getState().users, user]
+        });
+      })
+    );
   }
 
   @Action(RemoveUser)
-  removeUser(ctx: StateContext<UserStateModel>, { payload }: RemoveUser) {
-    return this.userService.deleteUser(payload._id).pipe(
+  removeUser({ getState, patchState }: StateContext<UserStateModel>, { payload }: RemoveUser) {
+    return this.userService.deleteUser(payload).pipe(
       tap(user => {
-        const state = ctx.getState();
-
-        ctx.setState({
-          ...state,
-          users: ctx.getState().users.filter((x, i) => x._id !== payload._id)
+        patchState({
+          users: getState().users.filter((x, i) => x._id !== payload)
         });
       })
     );
   }
 
   @Action(ViewUser)
-  viewUser({ getState, setState }: StateContext<UserStateModel>, { payload }: ViewUser) {
-    const user: User = getState().users.find((x, i) => x._id === payload);
+  viewUser({ getState, setState, patchState }: StateContext<UserStateModel>, { payload }: ViewUser) {
+    const findUser: User = getState().users.find((x, i) => x._id === payload);
+
+    if (!findUser) {
+      return this.userService.getUser(payload).pipe(
+        tap(user => {
+          patchState({
+            user
+          });
+        })
+      );
+    }
 
     setState({
       ...getState(),
-      user: user
+      user: findUser
+    });
+  }
+
+  @Action(EditUser)
+  editUser({ getState, setState, patchState }: StateContext<UserStateModel>, { payload }: ViewUser) {
+    const findUser: User = getState().users.find((x, i) => x._id === payload);
+
+    if (!findUser) {
+      return this.userService.getUser(payload).pipe(
+        tap(user => {
+          patchState({
+            user
+          });
+        })
+      );
+    }
+
+    setState({
+      ...getState(),
+      user: findUser
     });
   }
 }

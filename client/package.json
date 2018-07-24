@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^6.0.9",
     "@angular/platform-server": "^6.0.9",
     "@angular/router": "^6.0.9",
+    "@ng-bootstrap/ng-bootstrap": "^2.2.0",
     "@ngxs/devtools-plugin": "^3.2.0",
     "@ngxs/store": "^3.2.0",
     "core-js": "^2.5.7",
