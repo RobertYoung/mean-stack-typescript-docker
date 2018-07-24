@@ -2,11 +2,11 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { AddUser, RemoveUser, GetUsers, ViewUser, EditUser } from '@client/user/user.actions';
 import { UserService } from '@client/user/user.service';
 import { tap, catchError } from 'rxjs/operators';
-import { User } from '@shared/models/user';
+import { UserImmutable } from '@shared/models/user';
 
 export class UserStateModel {
-  users: User[];
-  user: User;
+  users: UserImmutable[];
+  user: UserImmutable;
 }
 
 @State<UserStateModel>({
@@ -66,7 +66,7 @@ export class UserState {
 
   @Action(ViewUser)
   viewUser({ getState, setState, patchState }: StateContext<UserStateModel>, { payload }: ViewUser) {
-    const findUser: User = getState().users.find((x, i) => x._id === payload);
+    const findUser: UserImmutable = getState().users.find((x, i) => x._id === payload);
 
     if (!findUser) {
       return this.userService.getUser(payload).pipe(
@@ -86,7 +86,7 @@ export class UserState {
 
   @Action(EditUser)
   editUser({ getState, setState, patchState }: StateContext<UserStateModel>, { payload }: ViewUser) {
-    const findUser: User = getState().users.find((x, i) => x._id === payload);
+    const findUser: UserImmutable = getState().users.find((x, i) => x._id === payload);
 
     if (!findUser) {
       return this.userService.getUser(payload).pipe(

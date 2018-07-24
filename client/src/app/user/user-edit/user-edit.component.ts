@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { User } from '@shared/models/user';
+import { UserImmutable, User } from '@shared/models/user';
 import { Store, Select } from '@ngxs/store';
 import { AddUser, EditUser } from '@client/user/user.actions';
 import { FormGroup } from '@angular/forms';
@@ -15,19 +15,23 @@ import { UserState } from '@client/user/user.state';
 export class UserEditComponent implements OnInit, OnDestroy {
   user: User;
 
-  @Select(UserState.user) user$: Observable<User>;
+  @Select(UserState.user) user$: Observable<UserImmutable>;
   @ViewChild('userForm') form: FormGroup;
 
   private routeSub: Subscription;
   private userSub: Subscription;
 
-  constructor(private store: Store, private router: Router, private route: ActivatedRoute) {}
+  constructor(private store: Store, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.user = new User();
+    this.user = new UserImmutable();
 
     this.routeSub = this.route.params.subscribe(params => {
-      this.store.dispatch(new EditUser(params['id']));
+      const id: string = params['id'];
+
+      if (id) {
+        this.store.dispatch(new EditUser(id));
+      }
     });
 
     this.userSub = this.user$.subscribe(user => (this.user = user));

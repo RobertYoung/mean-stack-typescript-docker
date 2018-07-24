@@ -1,4 +1,4 @@
-import { User } from '@shared/models/user';
+import { UserImmutable } from '@shared/models/user';
 
 export class GetUsers {
   static type = '[User] GetUsers';
@@ -7,7 +7,7 @@ export class GetUsers {
 export class AddUser {
   static type = '[User] AddUser';
 
-  constructor(public readonly payload: User) {}
+  constructor(public readonly payload: UserImmutable) {}
 }
 
 export class RemoveUser {

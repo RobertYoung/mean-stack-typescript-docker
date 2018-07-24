@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { UserState } from '@client/user/user.state';
 import { GetUsers, RemoveUser } from '@client/user/user.actions';
-import { User } from '@shared/models/user';
+import { UserImmutable } from '@shared/models/user';
 
 @Component({
   selector: 'app-user-list',
@@ -11,13 +11,13 @@ import { User } from '@shared/models/user';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  @Select(UserState.users) users$: Observable<Array<User>>;
+  @Select(UserState.users) users$: Observable<Array<UserImmutable>>;
 
   constructor(private store: Store) {}
 
   ngOnInit() {}
 
-  removeUser(user: User) {
-    this.store.dispatch(new RemoveUser(user));
+  removeUser(user: UserImmutable) {
+    this.store.dispatch(new RemoveUser(user._id));
   }
 }

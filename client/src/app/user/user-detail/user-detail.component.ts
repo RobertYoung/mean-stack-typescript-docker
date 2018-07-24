@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { UserState } from '@client/user/user.state';
 import { Observable } from 'rxjs';
-import { User } from '@shared/models/user';
+import { UserImmutable } from '@shared/models/user';
 import { ActivatedRoute } from '@angular/router';
 import { ViewUser } from '@client/user/user.actions';
 
@@ -12,7 +12,7 @@ import { ViewUser } from '@client/user/user.actions';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit, OnDestroy {
-  @Select(UserState.user) user$: Observable<User>;
+  @Select(UserState.user) user$: Observable<UserImmutable>;
 
   private sub: any;
 
