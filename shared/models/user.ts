@@ -4,5 +4,5 @@ export class User {
   readonly lastName: string;
   readonly email: string;
   readonly age: number;
-  readonly admin: boolean;
+  readonly admin: boolean = false;
 }

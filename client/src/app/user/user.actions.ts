@@ -13,11 +13,17 @@ export class AddUser {
 export class RemoveUser {
   static type = '[User] RemoveUser';
 
-  constructor(public readonly payload: User) {}
+  constructor(public readonly payload: string) {}
 }
 
 export class ViewUser {
   static type = '[User] ViewUser';
+
+  constructor(public readonly payload: string) {}
+}
+
+export class EditUser {
+  static type = '[User] EditUser';
 
   constructor(public readonly payload: string) {}
 }
