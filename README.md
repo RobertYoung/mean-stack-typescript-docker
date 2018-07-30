@@ -46,7 +46,7 @@ docker rmi $(docker images -q)
 docker run -it --rm -v ${PWD}:/usr/src/app open-access /bin/sh ./tools/scripts/install-dependencies.sh
 
 # Execute commands using the mongo shell (nb: the container name may differ)
-docker exec -it open-access-compliance-reporting_open-access-database_1 mongo
+docker exec -it mean-stack-typescript-docker_mean-stack-database_1 mongo
 ```
 
 ### Docker Compose
@@ -84,6 +84,6 @@ docker-compose -f docker-compose.debug.yml up --build mean-stack-database-seed
 If you are running the server outside of docker-compose, you will need to add an entry to your hosts file so it knows where to connect to the MongoDb instance
 
 ```sh
-# Add '127.0.0.1 open-access-database' to your hosts file
+# Add '127.0.0.1 mean-stack-database' to your hosts file
 sudo nano /etc/hosts
 ```
