@@ -57,26 +57,26 @@ docker exec -it open-access-compliance-reporting_open-access-database_1 mongo
 docker-compose -f docker-compose.yml up --build
 
 # Start web server only
-docker-compose -f docker-compose.yml up --build open-access
+docker-compose -f docker-compose.yml up --build mean-stack
 
 # Start database only
-docker-compose -f docker-compose.yml up --build -d open-access-database
+docker-compose -f docker-compose.yml up --build -d mean-stack-database
 
 # Seed the database
-docker-compose -f docker-compose.yml up --build open-access-database-seed
+docker-compose -f docker-compose.yml up --build mean-stack-database-seed
 
 ### Dev ###
 # Start all services
 docker-compose -f docker-compose.debug.yml up --build
 
 # Start web server only
-docker-compose -f docker-compose.debug.yml up --build open-access
+docker-compose -f docker-compose.debug.yml up --build mean-stack
 
 # Start database only
-docker-compose -f docker-compose.debug.yml up -d --build open-access-database
+docker-compose -f docker-compose.debug.yml up -d --build mean-stack-database
 
 # Seed the database
-docker-compose -f docker-compose.debug.yml up --build open-access-database-seed
+docker-compose -f docker-compose.debug.yml up --build mean-stack-database-seed
 ```
 
 ### VSCode
