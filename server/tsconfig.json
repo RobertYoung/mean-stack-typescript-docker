@@ -17,11 +17,5 @@
       "@server/*": ["src/*"],
       "@shared/*": ["../shared/*"]
     }
-  },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  }
 }

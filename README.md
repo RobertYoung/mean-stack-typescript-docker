@@ -1,6 +1,7 @@
 # Mean Stack Boilerplate
 
 ## Getting Started
+
 The quickest way to get going is to run:
 
 ```sh
@@ -16,6 +17,7 @@ This will start
 Open http://localhost:3000
 
 ### Development Build
+
 ```sh
 # Install client dependencies locally
 docker run -it --rm -v ${PWD}/client:/usr/src/app/client -w /usr/src/app/client mean-stack yarn
@@ -29,9 +31,10 @@ docker-compose -f docker-compose.debug.yml up --build
 
 Aswell as starting Node & MongoDB, it will also start the Angular dev server on port [4200](http://localhost:4200)
 
-
 ## Help
+
 ### Docker Commands
+
 ```sh
 # Stop all running containers
 docker stop $(docker ps -aq)
@@ -77,6 +80,16 @@ docker-compose -f docker-compose.debug.yml up -d --build mean-stack-database
 
 # Seed the database
 docker-compose -f docker-compose.debug.yml up --build mean-stack-database-seed
+```
+
+### Testing
+
+```sh
+# Client
+docker run -it --rm -v ${PWD}/:/usr/src/app/ -w /usr/src/app/client mean-stack npm run test
+
+# Server
+docker run -it --rm -v ${PWD}/:/usr/src/app/ -w /usr/src/app/server mean-stack npm run test
 ```
 
 ### VSCode
