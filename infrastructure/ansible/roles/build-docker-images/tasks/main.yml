@@ -1,0 +1,7 @@
+---
+
+- name: Build docker images
+  command: docker-compose up --no-start
+  args:
+    chdir: "{{ release_path }}/"
+

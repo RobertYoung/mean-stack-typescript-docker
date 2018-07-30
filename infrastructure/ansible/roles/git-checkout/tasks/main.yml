@@ -1,0 +1,12 @@
+---
+
+- name: "Clean checkout directory {{ project_path }}"
+  file:
+    state: absent
+    path: "{{ release_path }}/"
+
+- name: "Checkout the application in {{ release_path }}"
+  git:
+    repo: 'https://github.com/RobertYoung/mean-stack-typescript-docker.git'
+    dest: "{{ release_path }}/"
+    version: master

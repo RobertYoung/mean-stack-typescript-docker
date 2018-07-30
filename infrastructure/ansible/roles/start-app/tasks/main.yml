@@ -1,0 +1,19 @@
+---
+
+- name: Stop any running docker compose
+  command: docker-compose down
+  ignore_errors: yes
+  args:
+    chdir: "{{ current_path }}/"
+
+- name: Update symlink
+  file:
+    src: "{{ release_path }}"
+    dest: "{{ current_path }}"
+    state: link
+    force: true
+
+- name: Start app
+  command: docker-compose up -d
+  args:
+    chdir: "{{ current_path }}/"

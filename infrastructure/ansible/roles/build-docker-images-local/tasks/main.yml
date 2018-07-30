@@ -1,0 +1,20 @@
+---
+
+- name: "Build docker containers"
+  command: docker-compose up --no-start
+  args:
+    chdir: "./../../"
+- name: "Clean docker images directory {{ docker_images_directory }}"
+  file:
+    state: absent
+    path: "{{ docker_images_directory }}/"
+- name: "Create directory {{ docker_images_directory }}"
+  file:
+    path: "{{ docker_images_directory }}"
+    state: directory
+- name: "Save mean-stack docker image to {{ docker_images_directory }}/"
+  command: "docker save mean-stack -o {{ docker_images_directory }}/mean-stack.tar"
+- name: "Save mongo docker image to {{ docker_images_directory }}/"
+  command: "docker save mongo -o {{ docker_images_directory }}/mongo.tar"
+- name: "Save mean-stack-database-seed docker image to {{ docker_images_directory }}/"
+  command: "docker save mean-stack-database-seed -o {{ docker_images_directory }}/mean-stack-database-seed.tar"

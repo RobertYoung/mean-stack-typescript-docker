@@ -1,0 +1,29 @@
+---
+
+- name: "Create directory {{ docker_images_directory }}"
+  file:
+    path: "{{ project_path }}/{{ docker_images_directory }}"
+    state: directory
+
+- name: "Copy docker images"
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: "{{ docker_images_directory }}/mean-stack.tar", dest: "{{ project_path }}/{{ docker_images_directory }}/mean-stack.tar" }
+    - { src: "{{ docker_images_directory }}/mongo.tar", dest: "{{ project_path }}/{{ docker_images_directory }}/mongo.tar" }
+    - { src: "{{ docker_images_directory }}/mean-stack-database-seed.tar", dest: "{{ project_path }}/{{ docker_images_directory }}/mean-stack-database-seed.tar" }
+
+- name: "Load mean-stack docker image"
+  command: "docker load -i {{ docker_images_directory }}/mean-stack.tar"
+  args:
+    chdir: "{{ project_path }}/"
+- name: "Load mongo docker image"
+  command: "docker load -i {{ docker_images_directory }}/mongo.tar"
+  args:
+      chdir: "{{ project_path }}/"
+
+- name: "Load mean-stack-database-seed docker image"
+  command: "docker load -i {{ docker_images_directory }}/mean-stack-database-seed.tar"
+  args:
+    chdir: "{{ project_path }}/"

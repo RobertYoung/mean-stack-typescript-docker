@@ -1,0 +1,9 @@
+# Ansible
+ansible_python_interpreter: /usr/bin/python3
+
+# Building the application
+project_path: /app
+docker_images_directory: ./.docker-images
+
+# Docker
+docker_users: []

@@ -1,0 +1,31 @@
+---
+
+#######################################################################################
+# Build docker images on the host machine, load & save docker images, copy, then start
+#######################################################################################
+- hosts: localhost
+  connection: local
+  vars:
+    ansible_python_interpreter: "python"
+  roles:
+    - role: build-docker-images-local
+
+- hosts: "all:!localhost"
+  become: true
+  vars:
+    pip_package: python3-pip
+    pip_install_packages:
+      - name: docker
+      - name: requests
+  roles:
+    - Stouts.python
+    - geerlingguy.pip
+    - geerlingguy.docker
+
+- hosts: "all:!localhost"
+  become: true
+  roles:
+    - role: setup
+    - role: git-checkout
+    - role: load-docker-images
+    - role: start-app

@@ -1,0 +1,24 @@
+---
+
+###########################################
+# Git checkout, build docker images, start
+###########################################
+- hosts: "all"
+  become: true
+  vars:
+    pip_package: python3-pip
+    pip_install_packages:
+      - name: docker
+      - name: requests
+  roles:
+    - Stouts.python
+    - geerlingguy.pip
+    - geerlingguy.docker
+
+- hosts: "all:!localhost"
+  become: true
+  roles:
+    - role: setup
+    - role: git-checkout
+    - role: build-docker-images
+    - role: start-app

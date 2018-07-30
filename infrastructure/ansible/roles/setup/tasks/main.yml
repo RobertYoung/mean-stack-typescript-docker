@@ -1,0 +1,16 @@
+---
+
+- name: Set some variable
+  set_fact:
+    release_path: "{{ project_path }}/releases/{{ lookup('pipe','date +%Y%m%d%H%M%S') }}"
+    current_path: "{{ project_path }}/current"
+
+- name: "Create directories"
+  file:
+    path: "{{ item.dest }}"
+    state: directory
+    mode: 0755
+    recurse: yes
+  with_items:
+    - { dest: "{{ release_path }}" }
+    - { dest: "{{ current_path }}" }
