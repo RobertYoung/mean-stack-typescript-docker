@@ -15,12 +15,15 @@
       "es2017",
       "dom"
     ],
-    "baseUrl": "src",
+    "baseUrl": "../",
     "paths": {
-      "@client/*": ["app/*"],
-      "@shared/*": ["../../shared/*"],
+      "@client/*": ["client/src/app/*"],
+      "@shared/*": ["shared/*"],
     }
   },
+  "exclude": [
+    "**/node_modules"
+  ],
   "angularCompilerOptions": {
     "enableIvy": true
   }

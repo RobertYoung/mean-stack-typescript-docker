@@ -4,5 +4,7 @@
   ],
   "ext": "js",
   "ignore": [],
+  "delay": "1000ms",
+  "legacyWatch": true,
   "exec": "node --inspect=0.0.0.0:9229 dist/server/src/main.js"
 }

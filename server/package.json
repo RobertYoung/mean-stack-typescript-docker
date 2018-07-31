@@ -5,6 +5,7 @@
   "author": "",
   "license": "MIT",
   "scripts": {
+    "nest": "nest",
     "format": "prettier --write \"**/*.ts\"",
     "build": "tsc",
     "build:watch": "tsc -w",
@@ -12,7 +13,7 @@
     "prebuild": "npm run clean",
     "prestart": "npm run build",
     "start": "node dist/server/src/main.js",
-    "start:dev": "npm run build:watch | nodemon",
+    "start:dev": "nodemon",
     "start:hmr": "node dist/server",
     "test": "jest",
     "test:cov": "jest --coverage",

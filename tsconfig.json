@@ -1,0 +1,18 @@
+{
+  // This tsconfig is only used for IDE purposes
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@server/*": [
+        "server/src/*"
+      ],
+      "@shared/*": [
+        "shared/*"
+      ]
+    }
+  },
+  "exclude": [
+    "**/node_modules",
+    "**/dist"
+  ]
+}

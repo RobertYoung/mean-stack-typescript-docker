@@ -12,10 +12,14 @@
     "inlineSourceMap": true,
     "allowJs": true,
     "outDir": "./dist",
-    "baseUrl": ".",
+    "baseUrl": "..",
     "paths": {
-      "@server/*": ["src/*"],
-      "@shared/*": ["../shared/*"]
+      "@server/*": ["./server/src/*"],
+      "@shared/*": ["./shared/*"]
     }
-  }
+  },
+  "exclude": [
+    "**/node_modules",
+    "**/dist"
+  ]
 }

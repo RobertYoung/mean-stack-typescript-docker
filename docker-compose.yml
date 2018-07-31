@@ -9,6 +9,8 @@ services:
       NODE_ENV: production
     ports:
       - 3000:3000
+    depends_on:
+      - "mean-stack-database"
     command: npm run start
   mean-stack-database:
     image: mongo
@@ -18,3 +20,5 @@ services:
     build:
       context: ./database
       dockerfile: ./Dockerfile
+    depends_on:
+      - "mean-stack"

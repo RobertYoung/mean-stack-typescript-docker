@@ -16,13 +16,29 @@ services:
     image: mean-stack
     build: .
     working_dir: /usr/src/app/server
+    environment:
+    - NODE_ENV=development
     ports:
       - 3000:3000
       - 9229:9229
     volumes:
        - ./server:/usr/src/app/server
        - ./shared:/usr/src/app/shared
+    depends_on:
+      - "mean-stack-database"
+      - "mean-stack-client"
     command: sh -c "mkdir -p dist/server/src && touch ./dist/server/src/main.js && npm run start:dev"
+  mean-stack-server-watch:
+    image: mean-stack
+    build: .
+    working_dir: /usr/src/app/server
+    volumes:
+       - ./server:/usr/src/app/server
+       - ./shared:/usr/src/app/shared
+    depends_on:
+      - "mean-stack-database"
+      - "mean-stack-client"
+    command: npm run build:watch
   mean-stack-database:
     image: mongo
     ports:
@@ -31,3 +47,5 @@ services:
     build:
       context: ./database
       dockerfile: ./Dockerfile
+    depends_on:
+      - "mean-stack-database"
